@@ -51,8 +51,9 @@ streamlit run src/main.py
 - Feedback: Provide feedback on the accuracy of the answers to improve the system.
 
 ## Watch the Demo
+ 
+https://github.com/user-attachments/assets/f6867223-270b-4e90-9681-c9a147069b95
 
-[Watch the demo video](Streamlit-output.mp4)
 This video demonstrates the functionality of the application. In this demo, you'll see how the application allows users to input complex queries specializing in fundamentals of probability and random processes, including mathematical expressions, and receive responses with properly formatted output. The application showcases the dynamic processing of user inputs, rendering of equations, and the overall user experience in a streamlined and intuitive interface.
 
 ## Future Enhancements
@@ -60,13 +61,17 @@ This video demonstrates the functionality of the application. In this demo, you'
 - Custom Model Fine-Tuning: Fine-tune models on domain-specific corpora for improved performance.
 - Real-Time Feedback Processing: Implement real-time updates to the model based on user feedback.
 
+
+
+
+
 ## Acknowledgements
 
 We would like to extend our gratitude to the following organizations and tools that made this project possible:
 
 - **[GROQ](https://groq.com/)**: For providing the advanced LLM (Llama-3) used in this project.
 - **[LangChain](https://langchain.com/)**: For offering a robust framework to build and integrate language model applications.
-- **[Hugging Face](https://huggingface.co/)**: For providing multilingual embeddings and cutting-edge NLP models.
+- **[Hugging Face](https://huggingface.co/)**: For providing multilingual embeddings and NLP models.
 - **[Streamlit](https://streamlit.io/)**: For enabling the creation of an intuitive and interactive user interface.
 - **[FAISS](https://github.com/facebookresearch/faiss)**: For delivering efficient vector search capabilities that power the document retrieval process.
   <!-- - **[Gensim](https://radimrehurek.com/gensim/)**: For providing the topic modeling tools like LDA used in this project. 
