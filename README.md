@@ -2,7 +2,7 @@
 
 ## Overview
 
-RAG-LangChain-DocSearch is a document search and question-answering system that utilizes Retrieval-Augmented Generation (RAG) techniques with LangChain. The system supports multi-lingual document processing and interactive querying using advanced machine learning models like HuggingFace's transformers and GROQ's LLMs. It provides features such as topic modeling, vector search using FAISS, and interactive visualization with Streamlit.
+RAG-LangChain-DocSearch is a document search and question-answering system that utilizes Retrieval-Augmented Generation (RAG) techniques with LangChain specializing in fundamentals of probability and random processes. The system supports multi-lingual document processing and interactive querying using advanced machine learning models like HuggingFace's transformers and GROQ's LLMs. It provides features such as topic modeling, vector search using FAISS, and interactive visualization with Streamlit.
 
 ## Features
 
@@ -50,6 +50,11 @@ streamlit run src/main.py
 - Querying: Enter a query to search the documents and get answers based on the content.
 - Feedback: Provide feedback on the accuracy of the answers to improve the system.
 
+## Watch the Demo
+
+[Watch the demo video](Streamlit-output.mp4)
+This video demonstrates the functionality of the application. In this demo, you'll see how the application allows users to input complex queries specializing in fundamentals of probability and random processes, including mathematical expressions, and receive responses with properly formatted output. The application showcases the dynamic processing of user inputs, rendering of equations, and the overall user experience in a streamlined and intuitive interface.
+
 ## Future Enhancements
 - Cloud Deployment: Deploy the system on cloud platforms like AWS or GCP for scalability.
 - Custom Model Fine-Tuning: Fine-tune models on domain-specific corpora for improved performance.
@@ -59,7 +64,7 @@ streamlit run src/main.py
 
 We would like to extend our gratitude to the following organizations and tools that made this project possible:
 
-- **[GROQ](https://groq.com/)**: For providing the advanced LLM used in this project.
+- **[GROQ](https://groq.com/)**: For providing the advanced LLM (Llama-3) used in this project.
 - **[LangChain](https://langchain.com/)**: For offering a robust framework to build and integrate language model applications.
 - **[Hugging Face](https://huggingface.co/)**: For providing multilingual embeddings and cutting-edge NLP models.
 - **[Streamlit](https://streamlit.io/)**: For enabling the creation of an intuitive and interactive user interface.
