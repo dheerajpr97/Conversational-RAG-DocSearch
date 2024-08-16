@@ -6,6 +6,19 @@ from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.chains import create_retrieval_chain
 from src.utils import get_model_and_embedding_choice, handle_openai_key, initialize_embeddings, handle_query, display_response
 
+# Set the background image
+background_image = """
+<style>
+[data-testid="stAppViewContainer"] > .main {
+    background-image: url("https://archive.webdesignhot.com/wp-content/uploads/2013/04/Colorful-Abstract-Waves-on-Black-Background-Vector-Graphic_thumb.jpg");
+    background-size: 100vw 100vh;  # This sets the size to cover 100% of the viewport width and height
+    background-position: center;  
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+</style>"""
+
+st.markdown(background_image, unsafe_allow_html=True)
 
 # Main UI display function
 def display_ui():
@@ -25,7 +38,7 @@ def display_ui():
         st.success("Vector Database is ready")
 
     # Input field for user query
-    user_prompt = st.text_area("Enter your query:", height=50)
+    user_prompt = st.text_area("Enter your query:", height=25)
 
     if user_prompt:
         # Load LLM based on model choice
