@@ -26,7 +26,7 @@ def load_prompt_template():
         """
         You are an expert in electrical and computer engineering, specializing in probability and random processes.
         Using only the information provided in the context below, answer the question as accurately and concisely as possible.
-        Format and display equations as an output in LaTeX with fractions, subscripts, superscripts, Greek symbols, integrals, and modulus functions
+        Format and display equations and derivations as an output in LaTeX with fractions, subscripts, superscripts, Greek symbols, integrals, and modulus functions
         even while solving problems stick to the same to display equations. 
         If the answer is not present in the context, state that the information is not available.
 

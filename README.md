@@ -2,12 +2,12 @@
 
 ## Overview
 
-RAG-LangChain-DocSearch is a document search and question-answering system that utilizes Retrieval-Augmented Generation (RAG) techniques with LangChain specializing in fundamentals of probability and random processes. The system supports multi-lingual document processing and interactive querying using advanced machine learning models like HuggingFace's transformers and GROQ's LLMs. It provides features such as topic modeling, vector search using FAISS, and interactive visualization with Streamlit.
+RAG-LangChain-DocSearch is a document search and question-answering system that utilizes Retrieval-Augmented Generation (RAG) techniques with LangChain specializing in fundamentals of probability and random processes. The system supports multi-lingual document processing and interactive querying using advanced machine learning models like HuggingFace's transformers and GROQ's LLMs. It provides features such as vector search using FAISS, and interactive visualization with Streamlit.
 
 ## Features
 
 - **Multi-Lingual Support:** Processes and queries documents in multiple languages using multilingual embeddings.
-- **Document Clustering and Topic Modeling:** Groups documents by topics using LDA or BERTopic and visualizes the distribution of topics.
+<!-- - **Document Clustering and Topic Modeling:** Groups documents by topics using LDA or BERTopic and visualizes the distribution of topics. -->
 - **Advanced Vector Search:** Uses FAISS for fast and efficient vector search across documents.
 - **Active Learning Feedback Loop:** Captures user feedback to improve the system over time.
 - **Interactive UI:** Provides an intuitive interface built with Streamlit for querying and exploring documents.
@@ -35,7 +35,7 @@ pip install -r requirements.txt
 
 Create a .env file in the root directory and add the necessary API keys.
 ```
-OPENAI_API_KEY=your_openai_api_key
+<!-- OPENAI_API_KEY=your_openai_api_key -->
 GROQ_API_KEY=your_groq_api_key
 HF_TOKEN=your_huggingface_token
 ```
@@ -56,14 +56,17 @@ https://github.com/user-attachments/assets/f6867223-270b-4e90-9681-c9a147069b95
 
 This video demonstrates the functionality of the application. In this demo, you'll see how the application allows users to input complex queries specializing in fundamentals of probability and random processes, including mathematical expressions, and receive responses with properly formatted output. The application showcases the dynamic processing of user inputs, rendering of equations, and the overall user experience in a streamlined and intuitive interface.
 
-## Future Enhancements
-- Cloud Deployment: Deploy the system on cloud platforms like AWS or GCP for scalability.
-- Custom Model Fine-Tuning: Fine-tune models on domain-specific corpora for improved performance.
-- Real-Time Feedback Processing: Implement real-time updates to the model based on user feedback.
+## Future Developments
 
+<!-- ### Versioning Strategy
+- **v1 Branch**: Preserve the current stable implementation.
+- **v2 Branch**: Develop and integrate new features incrementally. -->
 
-
-
+- **Document Upload**: Improve PDF processing and include user feedback during uploads.
+- **Message History**: Implement a system to maintain conversation context across interactions.
+- **Cloud Deployment**: Deploy the system on cloud platforms like AWS or GCP for scalability.
+- **Custom Model Fine-Tuning:** Fine-tune models on domain-specific corpora for improved performance.
+- **Real-Time Feedback Processing**: Implement real-time updates to the model based on user feedback.
 
 ## Acknowledgements
 
