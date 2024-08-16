@@ -6,7 +6,7 @@ from langchain_core.prompts import ChatPromptTemplate
 
 def load_embeddings(embedding_choice, api_key=None):
     if embedding_choice == "Hugging Face":
-        return HuggingFaceEmbeddings(model_name="paraphrase-multilingual-MiniLM-L12-v2")
+        return HuggingFaceEmbeddings(model_name="all-MiniLM-L12-v2") # paraphrase-multilingual-MiniLM-L12-v2 
     elif embedding_choice == "OpenAI" and api_key:
         return OpenAIEmbeddings(openai_api_key=api_key)
     else:
