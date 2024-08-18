@@ -1,28 +1,17 @@
 import streamlit as st
 import time
-from src.vector_store import create_vector_embedding
+from src.utils.docsearch_utils import create_vector_embedding
 from src.query_processing import  load_prompt_template
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.chains import create_retrieval_chain
-from src.utils import get_model_and_embedding_choice, handle_openai_key, initialize_embeddings, handle_query, display_response
+from src.utils.common_utils import get_model_and_embedding_choice,  handle_query
+from src.utils.docsearch_utils import initialize_embeddings
 
-# Set the background image
-background_image = """
-<style>
-[data-testid="stAppViewContainer"] > .main {
-    background-image: url("https://archive.webdesignhot.com/wp-content/uploads/2013/04/Colorful-Abstract-Waves-on-Black-Background-Vector-Graphic_thumb.jpg");
-    background-size: 100vw 100vh;  # This sets the size to cover 100% of the viewport width and height
-    background-position: center;  
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
-</style>"""
-
-st.markdown(background_image, unsafe_allow_html=True)
 
 # Main UI display function
-def display_ui():
-    st.title("RAG Document Q&A With Multi-Lingual Support")
+def run_doc_qa_rag():
+    # Set the title of the functionality
+    st.markdown("<h1 style='font-size:32px;'>RAG Document Q&A With Multi-Lingual Support for Probability and Random Processes</h1>", unsafe_allow_html=True)
 
     # Get model and embedding choice from the user
     model_choice, embedding_choice = get_model_and_embedding_choice()
@@ -38,7 +27,7 @@ def display_ui():
         st.success("Vector Database is ready")
 
     # Input field for user query
-    user_prompt = st.text_area("Enter your query:", height=25)
+    user_prompt = st.text_area("Enter your query:", height=15)
 
     if user_prompt:
         # Load LLM based on model choice
@@ -73,4 +62,4 @@ def display_ui():
                 st.write('------------------------')
 
 if __name__ == "__main__":
-    display_ui()
+    run_doc_qa_rag()

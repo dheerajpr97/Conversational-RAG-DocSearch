@@ -1,31 +1,39 @@
-# vector_store.py
-
-import os
-import pickle
 import time
+import streamlit as st
 from langchain_community.vectorstores import FAISS
 from langchain.document_loaders import PyPDFDirectoryLoader, PyMuPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-import streamlit as st
+from src.utils.common_utils import load_vectors_from_disk, save_vectors_to_disk, load_embeddings, handle_openai_key
+
+
+# Function to initialize embeddings based on user choices
+def initialize_embeddings(model_choice, embedding_choice):
+    if embedding_choice == "OpenAI" or model_choice.startswith("gpt"):
+        openai_api_key = handle_openai_key()
+        if not openai_api_key:
+            return None, False
+        
+    if embedding_choice == "OpenAI" and model_choice.startswith("gpt"):
+        st.info("You are using OpenAI embeddings with an OpenAI model.")
+        return load_embeddings(embedding_choice, api_key=openai_api_key), False  # # Compute embeddings for OpenAI with GPT models
+    
+    elif embedding_choice == "Hugging Face" and model_choice.startswith("gpt"):
+        st.info("You are using Hugging Face embeddings with an OpenAI model.")
+        return load_embeddings(embedding_choice), True  # Use caching for Hugging Face embeddings with GPT models
+    
+    elif embedding_choice == "OpenAI" and not model_choice.startswith("gpt"):
+        st.info("You are using OpenAI embeddings with a non-GPT model.")
+        return load_embeddings(embedding_choice, api_key=openai_api_key), False # Compute embeddings for OpenAI with non-GPT models
+
+    return load_embeddings(embedding_choice, api_key=None), True  # Use caching for Hugging Face with non-GPT models
 
 CACHE_PATH = "vector_cache.pkl"
 
-def save_vectors_to_disk(vectors):
-    with open(CACHE_PATH, 'wb') as f:
-        pickle.dump(vectors, f)
-
-def load_vectors_from_disk():
-    if os.path.exists(CACHE_PATH):
-        with open(CACHE_PATH, 'rb') as f:
-            vectors = pickle.load(f)
-        return vectors
-    return None
-
-def create_vector_embedding(embeddings, pdf_directory, use_cache=True):
+def create_vector_embedding(embeddings, pdf_directory,  use_cache=True):
     vectors = None
     
     if use_cache:
-        vectors = load_vectors_from_disk()
+        vectors = load_vectors_from_disk(CACHE_PATH=CACHE_PATH)
 
     if vectors is not None:
         st.session_state.vectors = vectors
