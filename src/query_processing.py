@@ -1,26 +1,6 @@
-from langchain_groq import ChatGroq
-from langchain_openai import ChatOpenAI
-from langchain_huggingface import HuggingFaceEmbeddings
-from langchain_openai import OpenAIEmbeddings
-from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
-def load_embeddings(embedding_choice, api_key=None):
-    if embedding_choice == "Hugging Face":
-        return HuggingFaceEmbeddings(model_name="paraphrase-multilingual-MiniLM-L12-v2")
-    elif embedding_choice == "OpenAI" and api_key:
-        return OpenAIEmbeddings(openai_api_key=api_key)
-    else:
-        raise ValueError("Invalid embedding choice or missing API key for OpenAI")
-    
-
-def load_llm(api_key, model_name="Llama3-8b-8192"):
-    if "Llama3" in model_name:
-        # Load GROQ's Llama3 model
-        return ChatGroq(groq_api_key=api_key, model_name=model_name)
-    else:
-        # Load OpenAI's GPT models
-        return ChatOpenAI(openai_api_key=api_key, model_name=model_name)
-
+# Prompt template for base question answering
 def load_prompt_template():
     return ChatPromptTemplate.from_template(
         """
@@ -36,4 +16,41 @@ def load_prompt_template():
 
         Question: {input}
         """
+    )
+
+# Additional prompt for contextualizing questions in a conversational setting
+def load_contextualize_q_prompt():
+    return ChatPromptTemplate.from_messages(
+        [
+            ("system", 
+            "Based on the provided chat history and the latest user question, "
+            "identify if the question references previous context. If it does, "
+            "rephrase the question so that it becomes fully self-contained and understandable "
+            "on its own, without any need for prior context. Do not provide an answer to the question. "
+            "Your task is solely to reformulate the question if necessary, and otherwise return it as is."
+            ),
+
+            MessagesPlaceholder("chat_history"),
+            ("human", "{input}"),
+        ]
+    )
+
+# Additional prompt for final question answering
+def load_final_qa_prompt():
+    return ChatPromptTemplate.from_messages(
+        [
+            ("system", 
+            "You are a knowledgeable assistant tasked with answering questions based on provided context. "
+            "Use the information within the given context to generate an accurate and concise response. "
+            "If the necessary information to answer the question is not present in the context, clearly state that the "
+            "information is unavailable. Do not add any information not found in the context."
+            "\n\n"
+            """<context>
+            {context}
+            </context>"""
+            ),
+
+            MessagesPlaceholder("chat_history"),
+            ("human", "{input}"),
+        ]
     )
