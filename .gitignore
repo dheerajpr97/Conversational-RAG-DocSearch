@@ -6,3 +6,5 @@ tests/
 project_structure.py
 
 *.pkl
+*.mp4
+temp_*
