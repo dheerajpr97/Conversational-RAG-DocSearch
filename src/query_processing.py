@@ -26,7 +26,7 @@ def load_contextualize_q_prompt():
             "Based on the provided chat history and the latest user question, "
             "identify if the question references previous context. If it does, "
             "rephrase the question so that it becomes fully self-contained and understandable "
-            "on its own, without any need for prior context. Do not provide an answer to the question. "
+            "on its own, without any need for prior context."
             "Your task is solely to reformulate the question if necessary, and otherwise return it as is."
             ),
 
@@ -43,7 +43,9 @@ def load_final_qa_prompt():
             "You are a knowledgeable assistant tasked with answering questions based on provided context. "
             "Use the information within the given context to generate an accurate and concise response. "
             "If the necessary information to answer the question is not present in the context, clearly state that the "
-            "information is unavailable. Do not add any information not found in the context."
+            "information is unavailable. Do not add any information not found in the context. Format and display equations" 
+            "and derivations as an output in LaTeX with matrices, fractions, subscripts, superscripts, Greek symbols, integrals, "
+            "and modulus functions even while solving problems stick to the same to display equations."
             "\n\n"
             """<context>
             {context}
