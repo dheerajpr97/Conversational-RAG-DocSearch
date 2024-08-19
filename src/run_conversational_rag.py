@@ -16,7 +16,7 @@ def get_session_history(session: str) -> BaseChatMessageHistory:
         st.session_state.store[session] = ChatMessageHistory()
     return st.session_state.store[session]
 
-# Main UI display function
+# Main  function
 def run_conversational_rag():
     
     # Set the title of the functionality
@@ -29,6 +29,14 @@ def run_conversational_rag():
     if 'store' not in st.session_state:
         st.session_state.store = {}
 
+    # Track previous selections
+    if 'prev_model_choice' not in st.session_state:
+        st.session_state.prev_model_choice = None
+    if 'prev_embedding_choice' not in st.session_state:
+        st.session_state.prev_embedding_choice = None
+    if 'prev_vector_choice' not in st.session_state:
+        st.session_state.prev_vector_choice = None
+
     # Get model and embedding choice from the user
     model_choice, embedding_choice = get_model_and_embedding_choice()
 
@@ -39,20 +47,31 @@ def run_conversational_rag():
             return None, False
     else:
         embeddings = load_embeddings(embedding_choice=embedding_choice, api_key=None)
-    
-    
+
+    # Choose the vector database
+    vector_choice = st.selectbox("Choose the vector database:", ("Select one..", "FAISS", "Chroma"))
+
+    # Check if there was a change in model, embeddings, or vector choice
+    if (model_choice != st.session_state.prev_model_choice or 
+        embedding_choice != st.session_state.prev_embedding_choice or 
+        vector_choice != st.session_state.prev_vector_choice):
+        
+        # Reset session state
+        st.session_state.store = {}  # Clear chat history
+        st.session_state.vectors = None  # Clear vector embeddings
+        st.session_state.prev_model_choice = model_choice
+        st.session_state.prev_embedding_choice = embedding_choice
+        st.session_state.prev_vector_choice = vector_choice
+        st.write("Model, embeddings, or vector store technique changed. Reinitializing...")
+
     # Store embeddings in session state
     st.session_state.embeddings = embeddings
-    
-    # Usage of session history
-    st.write("Chat history initialized.")
 
     # File uploader for PDFs
     uploaded_files = st.file_uploader("Choose a PDF file", type="pdf", accept_multiple_files=True)
-    vector_choice = st.selectbox("Choose the vector database:", ("Select one..", "FAISS", "Chroma"))
 
-    if uploaded_files and vector_choice:
-        if 'vectors' not in st.session_state:
+    if uploaded_files and vector_choice != "Select one..":
+        if 'vectors' not in st.session_state or st.session_state.vectors is None:
             st.write(f"Uploaded {len(uploaded_files)} files")
             st.session_state.vectors = create_vector_embedding(st.session_state.embeddings, 
                                                                uploaded_files, vector_choice)
@@ -95,7 +114,6 @@ def run_conversational_rag():
         )
         st.write("User:", user_prompt)
         st.write("Assistant:", response['answer'])
-        #st.write("Chat History:", session_history.messages)
         st.write(f"Time taken: {time.time() - start:.2f} seconds")
 
         # Feedback mechanism
