@@ -69,11 +69,11 @@ Upon launching the Streamlit app, users are presented with two primary functiona
 - **Vector Database Selection**: Opt to use FAISS or Chroma for vector searches based on your performance or scalability needs.
 - **Feedback**: Provide feedback on the accuracy of the answers to improve the system.
 
-<!-- ## Watch the Demo
+## Watch the Demo
 
-[Demo Video](https://github.com/user-attachments/assets/f6867223-270b-4e90-9681-c9a147069b95)
+[Demo Video](https://github.com/user-attachments/assets/a5d723a0-c1ef-411d-8971-3b9e7bafa946)
 
-This video demonstrates the application's functionality. You'll see how the system allows users to input complex queries, including mathematical expressions, and receive well-formatted responses. The demo also showcases the interactive processing of user inputs, rendering of equations, and the overall user experience in a streamlined interface. -->
+This video showcases the core features of the Conversational-RAG-DocSearch application. It walks through the user interface, highlighting how users can switch between functions, upload PDF documents, select different models and embeddings, and interact with the system through conversational queries. 
 
 ## Future Developments
 
