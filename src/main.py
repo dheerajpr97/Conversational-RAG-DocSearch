@@ -9,6 +9,12 @@ from src.config import Config
 from src.run_doc_qa_rag import run_doc_qa_rag
 from src.run_conversational_rag import run_conversational_rag
 
+
+## Langsmith Tracking
+os.environ["LANGCHAIN_API_KEY"]=os.getenv("LANGCHAIN_API_KEY")
+os.environ["LANGCHAIN_TRACING_V2"]="true"
+os.environ["LANGCHAIN_PROJECT"]=os.getenv("LANGCHAIN_PROJECT")
+
 # Load environment variables and set session state variables
 st.session_state["openai_api_key"] = Config.OPENAI_API_KEY
 st.session_state["groq_api_key"] = Config.GROQ_API_KEY

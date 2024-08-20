@@ -1,5 +1,6 @@
 # Dependencies for the project  
 
+chromadb
 gensim==4.3.3
 langchain==0.2.14
 langchain_community
@@ -9,5 +10,7 @@ langchain_huggingface==0.0.3
 langchain_openai==0.1.21
 plotly==5.23.0
 python-dotenv==1.0.1
+pymupdf
 streamlit==1.37.1
 faiss-cpu
+
