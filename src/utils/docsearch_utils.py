@@ -60,6 +60,6 @@ def create_vector_embedding(embeddings, pdf_directory,  use_cache=True):
         st.write(f"Created vector embeddings in {time.time() - start_time:.2f} seconds")
 
         if use_cache:
-            save_vectors_to_disk(st.session_state.vectors)
+            save_vectors_to_disk(vectors=st.session_state.vectors, CACHE_PATH=CACHE_PATH)
 
     return st.session_state.vectors

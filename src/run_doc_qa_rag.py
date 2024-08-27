@@ -1,5 +1,6 @@
 import streamlit as st
 import time
+from src.config import Config
 from src.utils.docsearch_utils import create_vector_embedding
 from src.query_processing import  load_prompt_template
 from langchain.chains.combine_documents import create_stuff_documents_chain
@@ -23,7 +24,7 @@ def run_doc_qa_rag():
 
     # Button to trigger document embedding creation
     if st.button("Document Embedding"):
-        create_vector_embedding(embeddings, "src/books", use_cache=use_cache)
+        create_vector_embedding(embeddings, Config.PDF_DIRECTORY, use_cache=use_cache)
         st.success("Vector Database is ready")
 
     # Input field for user query

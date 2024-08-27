@@ -11,6 +11,7 @@ langchain_openai==0.1.21
 plotly==5.23.0
 python-dotenv==1.0.1
 pymupdf
+pypdf
 streamlit==1.37.1
 faiss-cpu
 

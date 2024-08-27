@@ -33,9 +33,7 @@ def create_vector_embedding(embeddings, uploaded_files, vector_choice="FAISS"):
     else:
         raise ValueError("Invalid vector choice")
     
-    st.write(f"Created new temporary vector embeddings in {time.time() - start_time:.2f} seconds")
-
-    
+    st.write(f"Created new temporary vector embeddings in {time.time() - start_time:.2f} seconds")    
 
     return vectors
 
